@@ -1,0 +1,12 @@
+{
+  "permissions": {
+    "allow": [
+      "mcp__Desktop_Commander__list_directory",
+      "mcp__Claude_Preview__preview_start",
+      "Bash(while read f)",
+      "Bash(do cp \"$f\" /Users/terry/Downloads/JCIM/upload/)",
+      "Bash(done)",
+      "Bash(npm run build)"
+    ]
+  }
+}

@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512">
+  <rect width="512" height="512" rx="64" fill="#0F0F1A"/>
+  <g transform="translate(256,240)">
+    <!-- Vertical beam -->
+    <rect x="-28" y="-140" width="56" height="280" rx="8" fill="#C7A34F"/>
+    <!-- Horizontal beam -->
+    <rect x="-90" y="-90" width="180" height="56" rx="8" fill="#C7A34F"/>
+  </g>
+  <!-- JCIM text -->
+  <text x="256" y="430" text-anchor="middle" font-family="serif" font-size="52" font-weight="bold" fill="#E8D5B7">JCIM</text>
+</svg>

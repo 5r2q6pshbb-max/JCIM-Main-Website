@@ -1,0 +1,18 @@
+#cta-banner {
+    height: 80vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background: linear-gradient(to bottom, var(--bg-deep) 0%, #1a160d 100%);
+    position: relative;
+}
+
+.cta-headline {
+    font-size: 5vw;
+    line-height: 1;
+    color: #fff;
+    margin-bottom: 1rem;
+    font-family: var(--font-display);
+}

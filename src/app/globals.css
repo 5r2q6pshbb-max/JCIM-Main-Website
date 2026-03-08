@@ -1,0 +1,497 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+
+@custom-variant dark (&:is(.dark *));
+
+/* ─── JCIM Custom Fonts ─── */
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-inter);
+  --font-mono: var(--font-jetbrains);
+  --font-display: var(--font-playfair);
+  --font-serif: var(--font-cormorant);
+  --font-scripture: var(--font-lora);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar: var(--sidebar);
+  --color-chart-5: var(--chart-5);
+  --color-chart-4: var(--chart-4);
+  --color-chart-3: var(--chart-3);
+  --color-chart-2: var(--chart-2);
+  --color-chart-1: var(--chart-1);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --radius-3xl: calc(var(--radius) + 12px);
+  --radius-4xl: calc(var(--radius) + 16px);
+  /* JCIM custom colors — theme-responsive via CSS variables */
+  --color-gold: #C7A34F;
+  --color-gold-light: #f0dca5;
+  --color-gold-dark: #8a6e40;
+  --color-ivory: var(--jcim-ivory);
+  --color-navy: var(--jcim-navy);
+  --color-navy-deep: var(--jcim-navy-deep);
+  --color-warm-white: var(--jcim-warm-white);
+  /* Static color for dark text on gold buttons — never flips */
+  --color-dark-base: #0F0F1A;
+}
+
+/* ─── JCIM Design Tokens ─── */
+:root {
+  --radius: 0.625rem;
+  /* JCIM theme-responsive color tokens */
+  --jcim-navy-deep: #0F0F1A;
+  --jcim-navy: #1A1A2E;
+  --jcim-warm-white: #FAFAF8;
+  --jcim-ivory: #E8D5B7;
+  /* JCIM Dark-first design */
+  --background: #0F0F1A;
+  --foreground: #FAFAF8;
+  --card: #1A1A2E;
+  --card-foreground: #FAFAF8;
+  --popover: #1A1A2E;
+  --popover-foreground: #FAFAF8;
+  --primary: #C7A34F;
+  --primary-foreground: #0F0F1A;
+  --secondary: #1A1A2E;
+  --secondary-foreground: #E8D5B7;
+  --muted: #1A1A2E;
+  --muted-foreground: #E8D5B7;
+  --accent: #C7A34F;
+  --accent-foreground: #0F0F1A;
+  --destructive: oklch(0.577 0.245 27.325);
+  --border: rgba(199, 163, 79, 0.15);
+  --input: rgba(199, 163, 79, 0.2);
+  --ring: #C7A34F;
+  --chart-1: #C7A34F;
+  --chart-2: #E8D5B7;
+  --chart-3: #f0dca5;
+  --chart-4: #8a6e40;
+  --chart-5: #FAFAF8;
+  --sidebar: #0F0F1A;
+  --sidebar-foreground: #FAFAF8;
+  --sidebar-primary: #C7A34F;
+  --sidebar-primary-foreground: #0F0F1A;
+  --sidebar-accent: #1A1A2E;
+  --sidebar-accent-foreground: #E8D5B7;
+  --sidebar-border: rgba(199, 163, 79, 0.15);
+  --sidebar-ring: #C7A34F;
+  /* JCIM specific */
+  --gold-gradient: linear-gradient(135deg, #f0dca5, #C7A34F, #8a6e40);
+}
+
+.dark {
+  /* JCIM theme-responsive color tokens */
+  --jcim-navy-deep: #0F0F1A;
+  --jcim-navy: #1A1A2E;
+  --jcim-warm-white: #FAFAF8;
+  --jcim-ivory: #E8D5B7;
+  --background: #0F0F1A;
+  --foreground: #FAFAF8;
+  --card: #1A1A2E;
+  --card-foreground: #FAFAF8;
+  --popover: #1A1A2E;
+  --popover-foreground: #FAFAF8;
+  --primary: #C7A34F;
+  --primary-foreground: #0F0F1A;
+  --secondary: #1A1A2E;
+  --secondary-foreground: #E8D5B7;
+  --muted: #1A1A2E;
+  --muted-foreground: #E8D5B7;
+  --accent: #C7A34F;
+  --accent-foreground: #0F0F1A;
+  --destructive: oklch(0.704 0.191 22.216);
+  --border: rgba(199, 163, 79, 0.15);
+  --input: rgba(199, 163, 79, 0.2);
+  --ring: #C7A34F;
+  --chart-1: #C7A34F;
+  --chart-2: #E8D5B7;
+  --chart-3: #f0dca5;
+  --chart-4: #8a6e40;
+  --chart-5: #FAFAF8;
+  --sidebar: #0F0F1A;
+  --sidebar-foreground: #FAFAF8;
+  --sidebar-primary: #C7A34F;
+  --sidebar-primary-foreground: #0F0F1A;
+  --sidebar-accent: #1A1A2E;
+  --sidebar-accent-foreground: #E8D5B7;
+  --sidebar-border: rgba(199, 163, 79, 0.15);
+  --sidebar-ring: #C7A34F;
+}
+
+.light {
+  /* JCIM theme-responsive color tokens — INVERTED for light mode */
+  --jcim-navy-deep: #FAFAF8;
+  --jcim-navy: #F5F0E8;
+  --jcim-warm-white: #1A1A2E;
+  --jcim-ivory: #6B5E4B;
+  --background: #FAFAF8;
+  --foreground: #1A1A2E;
+  --card: #ffffff;
+  --card-foreground: #1A1A2E;
+  --popover: #ffffff;
+  --popover-foreground: #1A1A2E;
+  --primary: #C7A34F;
+  --primary-foreground: #ffffff;
+  --secondary: #f5f0e8;
+  --secondary-foreground: #1A1A2E;
+  --muted: #f5f0e8;
+  --muted-foreground: #6b5e4b;
+  --accent: #C7A34F;
+  --accent-foreground: #ffffff;
+  --destructive: oklch(0.577 0.245 27.325);
+  --border: rgba(26, 26, 46, 0.1);
+  --input: rgba(26, 26, 46, 0.15);
+  --ring: #C7A34F;
+  --chart-1: #C7A34F;
+  --chart-2: #6B5E4B;
+  --chart-3: #8a6e40;
+  --chart-4: #4A4032;
+  --chart-5: #1A1A2E;
+  --sidebar: #FAFAF8;
+  --sidebar-foreground: #1A1A2E;
+  --sidebar-primary: #C7A34F;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #f5f0e8;
+  --sidebar-accent-foreground: #1A1A2E;
+  --sidebar-border: rgba(26, 26, 46, 0.1);
+  --sidebar-ring: #C7A34F;
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+/* ─── Custom Scrollbar ─── */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #0F0F1A;
+}
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #C7A34F, #8a6e40);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #f0dca5;
+}
+
+/* Light mode scrollbar */
+.light ::-webkit-scrollbar-track {
+  background: #F5F0E8;
+}
+.light ::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #8a6e40, #C7A34F);
+}
+.light ::-webkit-scrollbar-thumb:hover {
+  background: #C7A34F;
+}
+
+/* ─── Gold Text Gradient ─── */
+.gold-text {
+  background: linear-gradient(135deg, #f0dca5, #C7A34F, #8a6e40);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ─── Gold Border Glow ─── */
+.gold-border-glow {
+  border: 1px solid rgba(199, 163, 79, 0.3);
+  box-shadow: 0 0 15px rgba(199, 163, 79, 0.1), inset 0 0 15px rgba(199, 163, 79, 0.05);
+}
+
+/* ─── Noise Overlay ─── */
+.noise-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  pointer-events: none;
+  opacity: 0.03;
+}
+
+/* ─── Selection ─── */
+::selection {
+  background: rgba(199, 163, 79, 0.3);
+  color: #FAFAF8;
+}
+
+.light ::selection {
+  background: rgba(199, 163, 79, 0.3);
+  color: #1A1A2E;
+}
+
+/* ─── Smooth Scroll ─── */
+html {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ─── Section styling ─── */
+.section-padding {
+  padding: 6rem 1.5rem;
+}
+
+@media (min-width: 768px) {
+  .section-padding {
+    padding: 8rem 2rem;
+  }
+}
+
+@media (min-width: 1280px) {
+  .section-padding {
+    padding: 10rem 4rem;
+  }
+}
+
+/* ─── Hero Fallback (for non-WebGL browsers) ─── */
+.hero-fallback {
+  background: radial-gradient(ellipse at center, #1A1A2E 0%, #0F0F1A 70%);
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-fallback::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(circle at 20% 50%, rgba(199, 163, 79, 0.08) 0%, transparent 50%),
+                     radial-gradient(circle at 80% 50%, rgba(199, 163, 79, 0.05) 0%, transparent 50%);
+}
+
+/* Light mode hero fallback */
+.light .hero-fallback {
+  background: radial-gradient(ellipse at center, #F5F0E8 0%, #FAFAF8 70%);
+}
+.light .hero-fallback::before {
+  background-image: radial-gradient(circle at 20% 50%, rgba(199, 163, 79, 0.12) 0%, transparent 50%),
+                     radial-gradient(circle at 80% 50%, rgba(199, 163, 79, 0.08) 0%, transparent 50%);
+}
+
+/* ─── Gothic Clip Path (Berean) ─── */
+.gothic-arch {
+  clip-path: polygon(0 15%, 5% 5%, 15% 0, 85% 0, 95% 5%, 100% 15%, 100% 100%, 0 100%);
+}
+
+/* ─── Chamfer Button Shape ─── */
+.chamfer-clip {
+  clip-path: polygon(12px 0, 100% 0, 100% calc(100% - 12px), calc(100% - 12px) 100%, 0 100%, 0 12px);
+}
+
+/* ─── Ken Burns Effect (Founder Photo) ─── */
+@keyframes kenBurns {
+  0% {
+    transform: scale(1) translate(0, 0);
+  }
+  50% {
+    transform: scale(1.08) translate(-1%, -1%);
+  }
+  100% {
+    transform: scale(1) translate(0, 0);
+  }
+}
+
+.ken-burns {
+  animation: kenBurns 20s ease-in-out infinite;
+}
+
+/* ─── 3D Book Tilt ─── */
+.book-card {
+  perspective: 1000px;
+  transform-style: preserve-3d;
+}
+
+.book-card:hover {
+  transform: rotateY(-5deg) rotateX(3deg) translateY(-8px);
+  box-shadow: 10px 10px 30px rgba(199, 163, 79, 0.1);
+}
+
+/* ─── Blog Prose Styling ─── */
+.jcim-prose {
+  color: rgba(232, 213, 183, 0.65);
+  font-size: 1.05rem;
+  line-height: 1.85;
+}
+
+.jcim-prose h1,
+.jcim-prose h2,
+.jcim-prose h3,
+.jcim-prose h4 {
+  color: #FAFAF8;
+  font-family: var(--font-playfair);
+  font-weight: 700;
+  margin-top: 2em;
+  margin-bottom: 0.75em;
+}
+
+.jcim-prose h2 {
+  font-size: 1.75rem;
+  border-bottom: 1px solid rgba(199, 163, 79, 0.15);
+  padding-bottom: 0.5em;
+}
+
+.jcim-prose h3 {
+  font-size: 1.35rem;
+}
+
+.jcim-prose p {
+  margin-bottom: 1.25em;
+}
+
+.jcim-prose blockquote {
+  border-left: 3px solid #C7A34F;
+  padding-left: 1.25rem;
+  font-family: var(--font-lora);
+  font-style: italic;
+  color: rgba(199, 163, 79, 0.7);
+  margin: 1.5em 0;
+}
+
+.jcim-prose strong {
+  color: #FAFAF8;
+  font-weight: 600;
+}
+
+.jcim-prose a {
+  color: #C7A34F;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.jcim-prose a:hover {
+  color: #f0dca5;
+}
+
+.jcim-prose ul,
+.jcim-prose ol {
+  padding-left: 1.5rem;
+  margin-bottom: 1.25em;
+}
+
+.jcim-prose li {
+  margin-bottom: 0.5em;
+}
+
+.jcim-prose li::marker {
+  color: #C7A34F;
+}
+
+.jcim-prose code {
+  background: rgba(199, 163, 79, 0.1);
+  padding: 0.15em 0.4em;
+  border-radius: 3px;
+  font-size: 0.9em;
+  font-family: var(--font-jetbrains);
+}
+
+.jcim-prose hr {
+  border: none;
+  border-top: 1px solid rgba(199, 163, 79, 0.15);
+  margin: 2em 0;
+}
+
+/* ─── Fund Allocation Bars ─── */
+.fund-bar {
+  background: linear-gradient(90deg, #C7A34F, #f0dca5);
+  height: 2rem;
+  position: relative;
+  transition: width 1s ease-out;
+}
+
+.fund-bar::after {
+  content: '';
+  position: absolute;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: #f0dca5;
+}
+
+/* ─── Light Mode Prose Overrides ─── */
+.light .jcim-prose {
+  color: #4A4032;
+}
+
+.light .jcim-prose h1,
+.light .jcim-prose h2,
+.light .jcim-prose h3,
+.light .jcim-prose h4 {
+  color: #1A1A2E;
+}
+
+.light .jcim-prose h2 {
+  border-bottom-color: rgba(26, 26, 46, 0.1);
+}
+
+.light .jcim-prose blockquote {
+  color: rgba(138, 110, 64, 0.8);
+}
+
+.light .jcim-prose strong {
+  color: #1A1A2E;
+}
+
+.light .jcim-prose a:hover {
+  color: #8a6e40;
+}
+
+.light .jcim-prose code {
+  background: rgba(199, 163, 79, 0.15);
+}
+
+.light .jcim-prose hr {
+  border-top-color: rgba(26, 26, 46, 0.1);
+}
+
+.light .jcim-prose li::marker {
+  color: #8a6e40;
+}
+
+/* ─── Light Mode Noise Overlay ─── */
+.light .noise-overlay {
+  opacity: 0.015;
+}

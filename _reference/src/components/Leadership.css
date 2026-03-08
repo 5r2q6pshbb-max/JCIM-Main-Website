@@ -1,0 +1,63 @@
+#leadership {
+    padding: 100px 0;
+    background: radial-gradient(circle at 70% 50%, #1a150b 0%, var(--bg-deep) 60%);
+}
+
+.profile-container {
+    display: flex;
+    align-items: center;
+    gap: 4rem;
+}
+
+.profile-img {
+    width: 400px;
+    height: 500px;
+    background-color: #111;
+    background-image: url('https://cdn.animaapp.com/projects/03c16589-3229-4276-b830-7f73a8f4a8b3/releases/blt/img/03c16589-3229-4276-b830-7f73a8f4a8b3.png');
+    background-size: cover;
+    background-position: center;
+    filter: grayscale(100%) contrast(120%);
+    box-shadow: 0 0 0 1px #333;
+    flex-shrink: 0;
+}
+
+.profile-info h2 {
+    font-size: 3rem;
+    margin-bottom: 0.5rem;
+    color: #fff;
+}
+
+.profile-role {
+    font-family: var(--font-ui);
+    color: var(--gold-primary);
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    margin-bottom: 2rem;
+    display: block;
+}
+
+.credentials {
+    margin-top: 2rem;
+    padding-top: 2rem;
+    border-top: 1px solid #222;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+}
+
+.cred-item {
+    font-family: var(--font-ui);
+    font-size: 0.85rem;
+    color: var(--text-muted);
+}
+
+@media (max-width: 768px) {
+    .profile-container {
+        flex-direction: column;
+    }
+
+    .profile-img {
+        width: 100%;
+        height: 400px;
+    }
+}

@@ -1,0 +1,72 @@
+#katabole {
+    padding: 150px 0;
+    background: #080808;
+    position: relative;
+}
+
+.timeline-container {
+    position: relative;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.timeline-line {
+    position: absolute;
+    left: 50%;
+    top: 0;
+    bottom: 0;
+    width: 1px;
+    background: #333;
+    transform: translateX(-50%);
+}
+
+.timeline-line-fill {
+    position: absolute;
+    left: 50%;
+    top: 0;
+    width: 1px;
+    background: var(--gold-primary);
+    transform: translateX(-50%);
+    height: 0%;
+    box-shadow: 0 0 10px var(--gold-primary);
+}
+
+.timeline-node {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 100px;
+    position: relative;
+    opacity: 0.3;
+    transition: opacity 0.5s ease;
+}
+
+.timeline-node.active {
+    opacity: 1;
+}
+
+.node-content {
+    width: 45%;
+    text-align: right;
+}
+
+.timeline-node:nth-child(even) .node-content {
+    order: 2;
+    text-align: left;
+}
+
+.node-dot {
+    width: 12px;
+    height: 12px;
+    background: #000;
+    border: 1px solid var(--gold-primary);
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%) rotate(45deg);
+    z-index: 2;
+}
+
+.timeline-node.active .node-dot {
+    background: var(--gold-primary);
+    box-shadow: 0 0 15px var(--gold-primary);
+}

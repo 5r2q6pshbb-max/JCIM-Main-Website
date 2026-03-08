@@ -1,0 +1,35 @@
+#berean {
+    height: 120vh;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.parallax-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 120%;
+    background-image: url('https://images.unsplash.com/photo-1438232992991-995b7058bbb3?q=80&w=2673&auto=format&fit=crop');
+    background-size: cover;
+    background-position: center;
+    z-index: 0;
+    filter: brightness(0.3) sepia(0.5) hue-rotate(-10deg);
+    transform: translateY(-10%);
+    will-change: transform;
+}
+
+.berean-card {
+    background: rgba(10, 10, 10, 0.85);
+    backdrop-filter: blur(10px);
+    padding: 4rem;
+    border: 1px solid var(--gold-dim);
+    max-width: 600px;
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.8);
+}
