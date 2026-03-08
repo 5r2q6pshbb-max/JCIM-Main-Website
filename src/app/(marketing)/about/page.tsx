@@ -6,6 +6,7 @@ import { VisionMission } from "@/components/about/vision-mission";
 import { CoreValues } from "@/components/about/core-values";
 import { StatementOfFaith } from "@/components/about/statement-of-faith";
 import { GovernanceChart } from "@/components/about/governance-chart";
+import { JourneyCta } from "@/components/about/journey-cta";
 
 export const metadata: Metadata = {
   title: "About",
@@ -23,6 +24,7 @@ export default function AboutPage() {
       <CoreValues />
       <StatementOfFaith />
       <GovernanceChart />
+      <JourneyCta />
     </>
   );
 }

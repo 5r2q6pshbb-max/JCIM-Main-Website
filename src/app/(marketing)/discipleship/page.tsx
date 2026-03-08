@@ -3,6 +3,7 @@ import { DiscipleshipHero } from "@/components/discipleship/discipleship-hero";
 import { ThemeliosPathway } from "@/components/discipleship/themelios-pathway";
 import { FoundationModules } from "@/components/discipleship/foundation-modules";
 import { CellSystem } from "@/components/discipleship/cell-system";
+import { ThemeliosCta } from "@/components/discipleship/themelios-cta";
 
 export const metadata: Metadata = {
   title: "Discipleship",
@@ -17,6 +18,7 @@ export default function DiscipleshipPage() {
       <ThemeliosPathway />
       <FoundationModules />
       <CellSystem />
+      <ThemeliosCta />
     </>
   );
 }

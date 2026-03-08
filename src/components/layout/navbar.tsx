@@ -98,13 +98,15 @@ export function Navbar() {
             {/* Theme toggle */}
             <ThemeToggle />
 
-            {/* Give CTA */}
-            <Link
-              href="/give"
+            {/* Sign In CTA */}
+            <a
+              href="https://themelios.app/login"
+              target="_blank"
+              rel="noopener noreferrer"
               className="hidden md:inline-flex chamfer-clip bg-gold px-6 py-2.5 text-sm font-semibold text-dark-base hover:bg-gold-light transition-colors"
             >
-              {t("give")}
-            </Link>
+              {t("signIn")}
+            </a>
 
             {/* Mobile menu hamburger */}
             <button

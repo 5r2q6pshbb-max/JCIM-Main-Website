@@ -11,7 +11,8 @@
     "blog": "Blog",
     "testimonies": "Témoignages",
     "give": "DONNER",
-    "giveNow": "FAIRE UN DON"
+    "giveNow": "FAIRE UN DON",
+    "signIn": "SE CONNECTER"
   },
   "Common": {
     "learnMore": "En savoir plus",
@@ -89,7 +90,11 @@
     "visionTitle": "Notre vision",
     "visionText": "Élever une génération de leaders du Royaume qui transformeront chaque sphère de la société par la Parole de Dieu sans compromis.",
     "missionTitle": "Notre mission",
-    "missionText": "Former chaque croyant, du fondement au leadership, par un enseignement systématique, le mentorat, la communauté et le service."
+    "missionText": "Former chaque croyant, du fondement au leadership, par un enseignement systématique, le mentorat, la communauté et le service.",
+    "journeyTag": "Votre prochaine étape",
+    "journeyTitle": "Commencez votre parcours spirituel",
+    "journeySubtitle": "Que vous soyez un nouveau croyant ou un leader expérimenté, le parcours de formation Themelios a une place pour vous. Découvrez un parcours structuré et fondé sur les Écritures, conçu pour vous mener du fondement au leadership.",
+    "journeyButton": "Explorer la formation"
   },
   "MinistriesPage": {
     "heroTag": "Ministères",
@@ -117,7 +122,12 @@
     "foundationSubtitle": "12 modules essentiels qui établissent chaque croyant dans les fondamentaux de la foi.",
     "cellTag": "Ministère des cellules",
     "cellTitle": "L'Église dans chaque foyer",
-    "cellSubtitle": "Le système de groupes de cellules est le cœur battant de la vie communautaire à Jesus CITY."
+    "cellSubtitle": "Le système de groupes de cellules est le cœur battant de la vie communautaire à Jesus CITY.",
+    "themeliosCtaTag": "Commencer",
+    "themeliosCtaTitle": "Visitez le système de formation Themelios",
+    "themeliosCtaSubtitle": "Prêt à commencer votre parcours de croissance ? Inscrivez-vous sur la plateforme Themelios pour suivre vos progrès, accéder aux ressources et vous connecter avec votre communauté de formation.",
+    "themeliosCtaButton": "S'inscrire maintenant",
+    "themeliosCtaSecondary": "Se connecter"
   },
   "SermonsPage": {
     "heroTag": "Prédications",

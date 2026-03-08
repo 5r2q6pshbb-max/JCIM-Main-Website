@@ -11,7 +11,8 @@
     "blog": "Blog",
     "testimonies": "Adanse",
     "give": "YƐ AYƐYƐDE",
-    "giveNow": "YƐ AYƐYƐDE SEESEI"
+    "giveNow": "YƐ AYƐYƐDE SEESEI",
+    "signIn": "BRA MU"
   },
   "Common": {
     "learnMore": "Sua Pii",
@@ -89,7 +90,11 @@
     "visionTitle": "Yɛn Anisoadehu",
     "visionText": "Sɛ yɛbɛtetea awoɔ ntoatoasoɔ Ahennie akannifoɔ a wɔbɛsakra wiase afã nyinaa nam Onyankopɔn Asɛm a wɔmmfa nkyɛ so.",
     "missionTitle": "Yɛn Botaeɛ",
-    "missionText": "Sɛ yɛbɛtetea gyidifoɔ biara fi fapem so de kɔ kannidie mu nam nkyerɛkyerɛ a wɔahyehyɛ, akwankyerɛ, fekuw, ne ɔsom mu."
+    "missionText": "Sɛ yɛbɛtetea gyidifoɔ biara fi fapem so de kɔ kannidie mu nam nkyerɛkyerɛ a wɔahyehyɛ, akwankyerɛ, fekuw, ne ɔsom mu.",
+    "journeyTag": "Wo Anamɔn a Edi Hɔ",
+    "journeyTitle": "Fi Wo Honhom Mu Akwantu Ase",
+    "journeySubtitle": "Sɛ woyɛ gyidifoɔ foforo anaa ɔkannifoɔ a wadi mu no, Themelios asuafo ntetea ɔkwan no wɔ beaeɛ ma wo. Hu akwantu a wɔahyehyɛ, a egyina Kyerɛwnsɛm so, a wɔayɛ sɛ ɛbɛfa wo afi fapem so de akɔ kannidie mu.",
+    "journeyButton": "Hwɛ Asuafo Ntetea"
   },
   "MinistriesPage": {
     "heroTag": "Asɔredie Adwumayɛ",
@@ -117,7 +122,12 @@
     "foundationSubtitle": "Nkyerɛkyerɛ titiriw 12 a ɛtim gyidifoɔ biara wɔ gyidie fapem mu.",
     "cellTag": "Cell Asɔredie",
     "cellTitle": "Asɔre wɔ Efie Biara Mu",
-    "cellSubtitle": "Cell group nhyehyɛe no yɛ Jesus CITY fekuw nkwa mu koma."
+    "cellSubtitle": "Cell group nhyehyɛe no yɛ Jesus CITY fekuw nkwa mu koma.",
+    "themeliosCtaTag": "Fi Ase",
+    "themeliosCtaTitle": "Kɔ Themelios Asuafo Ntetea Nhyehyɛe No So",
+    "themeliosCtaSubtitle": "Woasiesie wo ho ama wo nyin akwantu? Kyerɛw din wɔ Themelios platform no so na di wo nkɔsoɔ akyi, nya nneɛma, na ka wo asuafo ntetea fekuw ho.",
+    "themeliosCtaButton": "Kyerɛw Din Seesei",
+    "themeliosCtaSecondary": "Bra Mu"
   },
   "SermonsPage": {
     "heroTag": "Asɛnka",

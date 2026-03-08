@@ -67,13 +67,15 @@ export function MobileNav({ open, onClose }: MobileNavProps) {
             </Link>
           ))}
 
-          <Link
-            href="/give"
+          <a
+            href="https://themelios.app/login"
+            target="_blank"
+            rel="noopener noreferrer"
             onClick={onClose}
             className="mt-4 chamfer-clip bg-gold text-dark-base text-center py-2.5 font-semibold hover:bg-gold-light transition-colors"
           >
-            {t("giveNow")}
-          </Link>
+            {t("signIn")}
+          </a>
 
           <p className="mt-4 pb-2 text-[10px] tracking-[0.2em] text-gold/30 uppercase text-center">
             {tCommon("raisingLeaders")}

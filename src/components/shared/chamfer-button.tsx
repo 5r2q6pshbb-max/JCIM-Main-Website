@@ -12,6 +12,8 @@ interface ChamferButtonProps {
   className?: string;
   type?: "button" | "submit" | "reset";
   disabled?: boolean;
+  target?: string;
+  rel?: string;
 }
 
 export function ChamferButton({
@@ -23,6 +25,8 @@ export function ChamferButton({
   className,
   type = "button",
   disabled,
+  target,
+  rel,
 }: ChamferButtonProps) {
   const baseStyles =
     "chamfer-clip inline-flex items-center justify-center font-semibold tracking-wider uppercase transition-all duration-300";
@@ -43,6 +47,14 @@ export function ChamferButton({
   const styles = cn(baseStyles, variants[variant], sizes[size], className);
 
   if (href) {
+    const isExternal = href.startsWith("http");
+    if (isExternal) {
+      return (
+        <a href={href} className={styles} target={target} rel={rel}>
+          {children}
+        </a>
+      );
+    }
     return (
       <Link href={href} className={styles}>
         {children}

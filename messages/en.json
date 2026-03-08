@@ -11,7 +11,8 @@
     "blog": "Blog",
     "testimonies": "Testimonies",
     "give": "GIVE",
-    "giveNow": "GIVE NOW"
+    "giveNow": "GIVE NOW",
+    "signIn": "SIGN IN"
   },
   "Common": {
     "learnMore": "Learn More",
@@ -89,7 +90,11 @@
     "visionTitle": "Our Vision",
     "visionText": "To raise a generation of Kingdom leaders who will transform every sphere of society through the uncompromising Word of God.",
     "missionTitle": "Our Mission",
-    "missionText": "To disciple every believer from foundation to leadership through systematic teaching, mentorship, community, and service."
+    "missionText": "To disciple every believer from foundation to leadership through systematic teaching, mentorship, community, and service.",
+    "journeyTag": "Your Next Step",
+    "journeyTitle": "Begin Your Spiritual Journey",
+    "journeySubtitle": "Whether you're a new believer or a seasoned leader, the Themelios discipleship pathway has a place for you. Discover a structured, scripture-based journey designed to take you from foundation to leadership.",
+    "journeyButton": "Explore Discipleship"
   },
   "MinistriesPage": {
     "heroTag": "Ministries",
@@ -117,7 +122,12 @@
     "foundationSubtitle": "12 essential modules that establish every believer in the fundamentals of faith.",
     "cellTag": "Cell Ministry",
     "cellTitle": "The Church in Every Home",
-    "cellSubtitle": "The cell group system is the heartbeat of community life at Jesus CITY."
+    "cellSubtitle": "The cell group system is the heartbeat of community life at Jesus CITY.",
+    "themeliosCtaTag": "Get Started",
+    "themeliosCtaTitle": "Visit the Themelios Discipleship System",
+    "themeliosCtaSubtitle": "Ready to begin your growth journey? Sign up on the Themelios platform to track your progress, access resources, and connect with your discipleship community.",
+    "themeliosCtaButton": "Sign Up Now",
+    "themeliosCtaSecondary": "Sign In"
   },
   "SermonsPage": {
     "heroTag": "Sermons",
