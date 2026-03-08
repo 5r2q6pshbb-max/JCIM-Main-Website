@@ -17,8 +17,6 @@ const withSerwist = withSerwistInit({
 const withNextIntl = createNextIntlPlugin("./src/i18n/request.ts");
 
 const nextConfig: NextConfig = {
-  output: "standalone",
-  distDir: "dist",
   turbopack: {
     root: path.resolve(__dirname),
   },
