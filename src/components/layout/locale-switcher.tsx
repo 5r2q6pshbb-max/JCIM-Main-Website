@@ -17,7 +17,7 @@ export function LocaleSwitcher() {
 
   function handleChange(locale: string) {
     // Set cookie and refresh
-    document.cookie = `locale=${locale};path=/;max-age=${60 * 60 * 24 * 365}`;
+    document.cookie = `locale=${locale};path=/;max-age=${60 * 60 * 24 * 365};SameSite=Lax;Secure`;
     startTransition(() => {
       router.refresh();
     });

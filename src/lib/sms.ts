@@ -20,16 +20,19 @@ export async function sendSMS({
   }
 
   try {
-    const params = new URLSearchParams({
-      key: apiKey,
-      to: sanitizedPhone,
-      msg: message,
-      sender_id: senderID,
-    });
-
+    // Use POST with body to avoid exposing API key in URL/server logs
     const response = await fetch(
-      `https://apps.eazismspro.com/api/v2/sms/send?${params.toString()}`,
-      { method: "GET" }
+      "https://apps.eazismspro.com/api/v2/sms/send",
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: new URLSearchParams({
+          key: apiKey,
+          to: sanitizedPhone,
+          msg: message,
+          sender_id: senderID,
+        }),
+      }
     );
 
     const result = await response.text();
