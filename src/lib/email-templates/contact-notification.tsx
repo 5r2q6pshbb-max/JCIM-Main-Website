@@ -1,3 +1,12 @@
+function escapeHtml(str: string): string {
+  return str
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#39;");
+}
+
 export function contactNotificationHtml(data: {
   name: string;
   email: string;
@@ -23,8 +32,8 @@ export function contactNotificationHtml(data: {
     .map(
       (r) =>
         `<tr>
-          <td style="padding:8px 12px;border-bottom:1px solid rgba(199,163,79,0.1);color:rgba(232,213,183,0.6);font-size:13px;white-space:nowrap;vertical-align:top;">${r.label}</td>
-          <td style="padding:8px 12px;border-bottom:1px solid rgba(199,163,79,0.1);color:#E8D5B7;font-size:14px;">${r.value}</td>
+          <td style="padding:8px 12px;border-bottom:1px solid rgba(199,163,79,0.1);color:rgba(232,213,183,0.6);font-size:13px;white-space:nowrap;vertical-align:top;">${escapeHtml(r.label)}</td>
+          <td style="padding:8px 12px;border-bottom:1px solid rgba(199,163,79,0.1);color:#E8D5B7;font-size:14px;">${escapeHtml(r.value!)}</td>
         </tr>`
     )
     .join("");
@@ -40,7 +49,7 @@ export function contactNotificationHtml(data: {
   <div style="max-width:600px;margin:0 auto;padding:40px 20px;">
     <div style="border:1px solid rgba(199,163,79,0.2);padding:40px;background:#1A1A2E;">
       <h1 style="color:#C7A34F;text-align:center;font-size:24px;margin:0 0 8px 0;font-weight:normal;">
-        New ${data.type.charAt(0).toUpperCase() + data.type.slice(1)} Form Submission
+        New ${escapeHtml(data.type.charAt(0).toUpperCase() + data.type.slice(1))} Form Submission
       </h1>
       <p style="text-align:center;color:rgba(232,213,183,0.5);font-size:13px;margin:0 0 24px 0;">
         Received on ${new Date().toLocaleDateString("en-US", { weekday: "long", year: "numeric", month: "long", day: "numeric" })}
@@ -55,7 +64,7 @@ export function contactNotificationHtml(data: {
           ? `<div style="margin:20px 0 0 0;">
               <p style="color:rgba(232,213,183,0.6);font-size:13px;margin:0 0 8px 0;">Message:</p>
               <div style="background:rgba(15,15,26,0.5);border:1px solid rgba(199,163,79,0.1);padding:16px;color:#E8D5B7;line-height:1.7;font-size:14px;">
-                ${data.message}
+                ${escapeHtml(data.message)}
               </div>
             </div>`
           : ""

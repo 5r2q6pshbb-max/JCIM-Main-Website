@@ -56,8 +56,16 @@ export function GivingForm() {
                 <input
                   type="number"
                   placeholder="0.00"
+                  min="1"
+                  max="1000000"
+                  step="0.01"
                   value={amount}
-                  onChange={(e) => setAmount(e.target.value)}
+                  onChange={(e) => {
+                    const val = e.target.value;
+                    if (val === "" || (Number(val) >= 0 && Number(val) <= 1_000_000)) {
+                      setAmount(val);
+                    }
+                  }}
                   className="w-full bg-navy-deep border border-gold/15 text-warm-white text-3xl md:text-4xl font-mono text-center py-5 pl-14 pr-4 placeholder:text-ivory/15 focus:outline-none focus:border-gold/40 transition-colors"
                 />
               </div>

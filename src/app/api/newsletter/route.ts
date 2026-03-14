@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { z } from "zod";
 import { sendEmail } from "@/lib/email";
 import { welcomeEmailHtml } from "@/lib/email-templates/welcome";
+import { rateLimit } from "@/lib/rate-limit";
 
 const newsletterSchema = z.object({
   email: z.string().email("Please enter a valid email address"),
@@ -9,6 +10,15 @@ const newsletterSchema = z.object({
 
 export async function POST(request: Request) {
   try {
+    const ip = request.headers.get("x-forwarded-for")?.split(",")[0]?.trim() || "unknown";
+    const { success } = rateLimit(`newsletter:${ip}`, { maxRequests: 3, windowMs: 60_000 });
+    if (!success) {
+      return NextResponse.json(
+        { success: false, message: "Too many requests. Please try again later." },
+        { status: 429 }
+      );
+    }
+
     const body = await request.json();
     const data = newsletterSchema.parse(body);
 

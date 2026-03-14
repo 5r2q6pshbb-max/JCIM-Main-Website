@@ -40,7 +40,15 @@ export function verifyWebhookSignature(
     .createHmac("sha512", PAYSTACK_SECRET)
     .update(body)
     .digest("hex");
-  return hash === signature;
+  // Use timing-safe comparison to prevent timing attacks
+  try {
+    return crypto.timingSafeEqual(
+      Buffer.from(hash, "hex"),
+      Buffer.from(signature, "hex")
+    );
+  } catch {
+    return false;
+  }
 }
 
 export async function verifyTransaction(reference: string) {

@@ -2,17 +2,28 @@ import { NextResponse } from "next/server";
 import { z } from "zod";
 import { sendEmail } from "@/lib/email";
 import { prayerConfirmationHtml } from "@/lib/email-templates/prayer-confirmation";
+import { rateLimit } from "@/lib/rate-limit";
 
 const prayerRequestSchema = z.object({
-  name: z.string().min(2, "Name must be at least 2 characters"),
+  name: z.string().min(2, "Name must be at least 2 characters").max(100),
   email: z.string().email().optional().or(z.literal("")),
   request: z
     .string()
-    .min(10, "Please share more details about your prayer request"),
+    .min(10, "Please share more details about your prayer request")
+    .max(5000),
 });
 
 export async function POST(request: Request) {
   try {
+    const ip = request.headers.get("x-forwarded-for")?.split(",")[0]?.trim() || "unknown";
+    const { success } = rateLimit(`prayer:${ip}`, { maxRequests: 5, windowMs: 60_000 });
+    if (!success) {
+      return NextResponse.json(
+        { success: false, message: "Too many requests. Please try again later." },
+        { status: 429 }
+      );
+    }
+
     const body = await request.json();
     const data = prayerRequestSchema.parse(body);
 

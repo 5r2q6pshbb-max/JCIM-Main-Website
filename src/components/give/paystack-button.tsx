@@ -34,6 +34,12 @@ export function PaystackButton({
   const loadScript = useCallback((): Promise<void> => {
     return new Promise((resolve, reject) => {
       if (window.PaystackPop) return resolve();
+      // Prevent duplicate script tags
+      const existing = document.querySelector('script[src="https://js.paystack.co/v2/inline.js"]');
+      if (existing) {
+        existing.addEventListener("load", () => resolve(), { once: true });
+        return;
+      }
       const script = document.createElement("script");
       script.src = "https://js.paystack.co/v2/inline.js";
       script.onload = () => resolve();

@@ -13,10 +13,16 @@ export async function sendSMS({
     return { success: false, error: "SMS not configured" };
   }
 
+  // Sanitize phone number: allow only digits, +, spaces, hyphens
+  const sanitizedPhone = to.replace(/[^\d+\s-]/g, "");
+  if (!sanitizedPhone || sanitizedPhone.length < 10) {
+    return { success: false, error: "Invalid phone number" };
+  }
+
   try {
     const params = new URLSearchParams({
       key: apiKey,
-      to: to,
+      to: sanitizedPhone,
       msg: message,
       sender_id: senderID,
     });

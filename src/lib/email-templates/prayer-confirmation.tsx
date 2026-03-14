@@ -1,4 +1,14 @@
+function escapeHtml(str: string): string {
+  return str
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#39;");
+}
+
 export function prayerConfirmationHtml(name: string): string {
+  const safeName = escapeHtml(name);
   return `<!DOCTYPE html>
 <html>
 <head>
@@ -13,7 +23,7 @@ export function prayerConfirmationHtml(name: string): string {
         We&rsquo;re Praying With You
       </h1>
       <p style="line-height:1.8;margin:0 0 16px 0;color:#E8D5B7;">
-        Dear ${name},
+        Dear ${safeName},
       </p>
       <p style="line-height:1.8;margin:0 0 16px 0;color:#E8D5B7;">
         Your prayer request has been received. Our prayer team is lifting you up before the Lord.
