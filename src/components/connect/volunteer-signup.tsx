@@ -39,10 +39,29 @@ export function VolunteerSignup() {
     resolver: zodResolver(volunteerSchema),
   });
 
-  const onSubmit = (data: VolunteerFormData) => {
-    console.log("Volunteer signup:", data);
-    toast.success("Thank you for volunteering! A team leader will reach out to you soon.");
-    reset();
+  const onSubmit = async (data: VolunteerFormData) => {
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          ...data,
+          type: "volunteer",
+          ministryInterest: data.ministry,
+          availability: data.availability,
+        }),
+      });
+
+      if (!res.ok) {
+        const err = await res.json();
+        throw new Error(err.message || "Submission failed");
+      }
+
+      toast.success("Thank you for volunteering! A team leader will reach out to you soon.");
+      reset();
+    } catch (err) {
+      toast.error(err instanceof Error ? err.message : "Something went wrong. Please try again.");
+    }
   };
 
   return (

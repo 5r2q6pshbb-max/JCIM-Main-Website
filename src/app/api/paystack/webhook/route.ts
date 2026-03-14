@@ -22,7 +22,6 @@ export async function POST(request: Request) {
         reference: event.data.reference,
         amount: event.data.amount / 100,
         currency: event.data.currency,
-        email: event.data.customer.email,
       });
     }
 

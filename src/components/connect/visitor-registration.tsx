@@ -39,10 +39,24 @@ export function VisitorRegistration() {
     resolver: zodResolver(visitorSchema),
   });
 
-  const onSubmit = (data: VisitorFormData) => {
-    console.log("Visitor registration:", data);
-    toast.success("Welcome! Your registration has been received. We look forward to seeing you!");
-    reset();
+  const onSubmit = async (data: VisitorFormData) => {
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ ...data, type: "visitor" }),
+      });
+
+      if (!res.ok) {
+        const err = await res.json();
+        throw new Error(err.message || "Submission failed");
+      }
+
+      toast.success("Welcome! Your registration has been received. We look forward to seeing you!");
+      reset();
+    } catch (err) {
+      toast.error(err instanceof Error ? err.message : "Something went wrong. Please try again.");
+    }
   };
 
   return (

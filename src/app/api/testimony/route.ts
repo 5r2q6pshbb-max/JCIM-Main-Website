@@ -31,13 +31,9 @@ export async function POST(request: Request) {
     const body = await request.json();
     const data = testimonySchema.parse(body);
 
-    // Log to console (no DB)
+    // TODO: Persist to database
     console.log("[Testimony Submission]", {
-      name: data.name,
-      email: data.email || "N/A",
-      phone: data.phone || "N/A",
       category: data.category,
-      testimony: data.testimony,
       submittedAt: new Date().toISOString(),
     });
 

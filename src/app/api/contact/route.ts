@@ -33,8 +33,6 @@ export async function POST(request: Request) {
     // TODO: Integrate with CRM / database
     console.log("[Contact Form Submission]", {
       type: data.type,
-      name: data.name,
-      email: data.email,
       timestamp: new Date().toISOString(),
     });
 

@@ -33,7 +33,7 @@ export async function sendSMS({
     );
 
     const result = await response.text();
-    console.log("[SMS Sent]", { to, result });
+    console.log("[SMS Sent]", { status: response.status });
     return { success: true, result };
   } catch (error) {
     console.error("[SMS Error]", error);

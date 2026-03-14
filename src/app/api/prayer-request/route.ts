@@ -29,9 +29,7 @@ export async function POST(request: Request) {
 
     // TODO: Integrate with email service to notify prayer team
     console.log("[Prayer Request]", {
-      name: data.name,
       hasEmail: !!data.email,
-      requestLength: data.request.length,
       timestamp: new Date().toISOString(),
     });
 

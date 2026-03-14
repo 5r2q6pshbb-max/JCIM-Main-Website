@@ -36,12 +36,8 @@ export async function POST(request: Request) {
     const data = rsvpSchema.parse(body);
 
     console.log("[RSVP Submission]", {
-      name: data.name,
-      email: data.email,
-      phone: data.phone || "N/A",
-      numberOfGuests: data.numberOfGuests,
       eventId: data.eventId,
-      eventTitle: data.eventTitle,
+      numberOfGuests: data.numberOfGuests,
       submittedAt: new Date().toISOString(),
     });
 
