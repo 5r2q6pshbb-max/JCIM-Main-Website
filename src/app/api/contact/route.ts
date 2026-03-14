@@ -2,29 +2,37 @@ import { NextResponse } from "next/server";
 import { z } from "zod";
 import { sendEmail } from "@/lib/email";
 import { contactNotificationHtml } from "@/lib/email-templates/contact-notification";
+import { rateLimit } from "@/lib/rate-limit";
 
 const contactSchema = z.object({
-  name: z.string().min(2, "Name must be at least 2 characters"),
+  name: z.string().min(2, "Name must be at least 2 characters").max(100),
   email: z.string().email("Please enter a valid email address"),
-  phone: z.string().optional(),
-  ageGroup: z.string().optional(),
-  howHeard: z.string().optional(),
-  message: z.string().optional(),
+  phone: z.string().max(20).optional(),
+  ageGroup: z.string().max(50).optional(),
+  howHeard: z.string().max(200).optional(),
+  message: z.string().max(2000).optional(),
   type: z.enum(["visitor", "volunteer", "general"]).default("general"),
-  ministryInterest: z.string().optional(),
-  availability: z.string().optional(),
+  ministryInterest: z.string().max(200).optional(),
+  availability: z.string().max(200).optional(),
 });
 
 export async function POST(request: Request) {
   try {
+    const ip = request.headers.get("x-forwarded-for")?.split(",")[0]?.trim() || "unknown";
+    const { success } = rateLimit(`contact:${ip}`, { maxRequests: 5, windowMs: 60_000 });
+    if (!success) {
+      return NextResponse.json(
+        { success: false, message: "Too many requests. Please try again later." },
+        { status: 429 }
+      );
+    }
+
     const body = await request.json();
     const data = contactSchema.parse(body);
 
     // TODO: Integrate with CRM / database
     console.log("[Contact Form Submission]", {
       type: data.type,
-      name: data.name,
-      email: data.email,
       timestamp: new Date().toISOString(),
     });
 

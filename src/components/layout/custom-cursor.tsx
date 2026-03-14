@@ -21,6 +21,7 @@ export function CustomCursor() {
     let mouseY = 0;
     let ringX = 0;
     let ringY = 0;
+    let rafId: number;
 
     const handleMouseMove = (e: MouseEvent) => {
       mouseX = e.clientX;
@@ -32,7 +33,7 @@ export function CustomCursor() {
       ringX += (mouseX - ringX) * 0.15;
       ringY += (mouseY - ringY) * 0.15;
       ring.style.transform = `translate(${ringX - 20}px, ${ringY - 20}px)`;
-      requestAnimationFrame(animate);
+      rafId = requestAnimationFrame(animate);
     };
 
     const handleMouseEnterInteractive = () => {
@@ -50,7 +51,7 @@ export function CustomCursor() {
     };
 
     window.addEventListener("mousemove", handleMouseMove);
-    requestAnimationFrame(animate);
+    rafId = requestAnimationFrame(animate);
 
     // Scale ring on interactive elements
     const interactives = document.querySelectorAll(
@@ -62,6 +63,7 @@ export function CustomCursor() {
     });
 
     return () => {
+      cancelAnimationFrame(rafId);
       window.removeEventListener("mousemove", handleMouseMove);
       interactives.forEach((el) => {
         el.removeEventListener("mouseenter", handleMouseEnterInteractive);

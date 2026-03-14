@@ -1,4 +1,14 @@
+function escapeHtml(str: string): string {
+  return str
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#39;");
+}
+
 export function welcomeEmailHtml(email: string): string {
+  const safeEmail = escapeHtml(email);
   return `<!DOCTYPE html>
 <html>
 <head>
@@ -17,7 +27,7 @@ export function welcomeEmailHtml(email: string): string {
         blog posts, and event announcements directly to your inbox.
       </p>
       <p style="line-height:1.8;margin:0 0 16px 0;color:rgba(232,213,183,0.7);font-size:14px;">
-        Subscribed as: ${email}
+        Subscribed as: ${safeEmail}
       </p>
       <p style="color:#C7A34F;text-align:center;font-style:italic;margin:24px 0;line-height:1.6;">
         &ldquo;Go therefore and make disciples of all nations&rdquo;<br />

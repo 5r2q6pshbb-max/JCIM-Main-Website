@@ -13,21 +13,30 @@ export async function sendSMS({
     return { success: false, error: "SMS not configured" };
   }
 
-  try {
-    const params = new URLSearchParams({
-      key: apiKey,
-      to: to,
-      msg: message,
-      sender_id: senderID,
-    });
+  // Sanitize phone number: allow only digits, +, spaces, hyphens
+  const sanitizedPhone = to.replace(/[^\d+\s-]/g, "");
+  if (!sanitizedPhone || sanitizedPhone.length < 10) {
+    return { success: false, error: "Invalid phone number" };
+  }
 
+  try {
+    // Use POST with body to avoid exposing API key in URL/server logs
     const response = await fetch(
-      `https://apps.eazismspro.com/api/v2/sms/send?${params.toString()}`,
-      { method: "GET" }
+      "https://apps.eazismspro.com/api/v2/sms/send",
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: new URLSearchParams({
+          key: apiKey,
+          to: sanitizedPhone,
+          msg: message,
+          sender_id: senderID,
+        }),
+      }
     );
 
     const result = await response.text();
-    console.log("[SMS Sent]", { to, result });
+    console.log("[SMS Sent]", { status: response.status });
     return { success: true, result };
   } catch (error) {
     console.error("[SMS Error]", error);

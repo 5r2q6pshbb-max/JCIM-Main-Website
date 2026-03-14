@@ -1,16 +1,26 @@
 import { NextResponse } from "next/server";
 import { z } from "zod";
 import { initializeTransaction } from "@/lib/paystack";
+import { rateLimit } from "@/lib/rate-limit";
 
 const schema = z.object({
   email: z.string().email(),
-  amount: z.number().positive(),
+  amount: z.number().positive().max(1_000_000),
   currency: z.enum(["GHS", "USD"]).default("GHS"),
-  name: z.string().optional(),
+  name: z.string().max(100).optional(),
 });
 
 export async function POST(request: Request) {
   try {
+    const ip = request.headers.get("x-forwarded-for")?.split(",")[0]?.trim() || "unknown";
+    const { success } = rateLimit(`paystack:${ip}`, { maxRequests: 10, windowMs: 60_000 });
+    if (!success) {
+      return NextResponse.json(
+        { success: false, message: "Too many requests. Please try again later." },
+        { status: 429 }
+      );
+    }
+
     const body = await request.json();
     const data = schema.parse(body);
     const result = await initializeTransaction({

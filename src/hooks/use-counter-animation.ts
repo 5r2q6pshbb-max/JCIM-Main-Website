@@ -14,6 +14,8 @@ export function useCounterAnimation(
   const prefersReducedMotion = useReducedMotion();
 
   useEffect(() => {
+    let rafId: number;
+
     if (prefersReducedMotion) {
       setCount(end);
       setHasAnimated(true);
@@ -22,7 +24,7 @@ export function useCounterAnimation(
 
     if (!triggerOnView) {
       animateCount();
-      return;
+      return () => cancelAnimationFrame(rafId);
     }
 
     const observer = new IntersectionObserver(
@@ -36,19 +38,21 @@ export function useCounterAnimation(
     );
 
     if (ref.current) observer.observe(ref.current);
-    return () => observer.disconnect();
+    return () => {
+      observer.disconnect();
+      cancelAnimationFrame(rafId);
+    };
 
     function animateCount() {
       const startTime = performance.now();
       const step = (currentTime: number) => {
         const elapsed = (currentTime - startTime) / 1000;
         const progress = Math.min(elapsed / duration, 1);
-        // Ease out cubic
         const eased = 1 - Math.pow(1 - progress, 3);
         setCount(Math.round(eased * end));
-        if (progress < 1) requestAnimationFrame(step);
+        if (progress < 1) rafId = requestAnimationFrame(step);
       };
-      requestAnimationFrame(step);
+      rafId = requestAnimationFrame(step);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [end, duration, triggerOnView, prefersReducedMotion]);

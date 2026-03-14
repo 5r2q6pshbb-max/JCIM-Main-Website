@@ -27,10 +27,28 @@ export function PrayerRequest() {
     resolver: zodResolver(prayerSchema),
   });
 
-  const onSubmit = (data: PrayerFormData) => {
-    console.log("Prayer request:", data);
-    toast.success("Your prayer request has been received. Our team is praying with you.");
-    reset();
+  const onSubmit = async (data: PrayerFormData) => {
+    try {
+      const res = await fetch("/api/prayer-request", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: data.name,
+          email: data.email || "",
+          request: data.prayerRequest,
+        }),
+      });
+
+      if (!res.ok) {
+        const err = await res.json();
+        throw new Error(err.message || "Submission failed");
+      }
+
+      toast.success("Your prayer request has been received. Our team is praying with you.");
+      reset();
+    } catch (err) {
+      toast.error(err instanceof Error ? err.message : "Something went wrong. Please try again.");
+    }
   };
 
   return (

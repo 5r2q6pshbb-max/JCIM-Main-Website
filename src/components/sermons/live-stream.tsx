@@ -12,9 +12,9 @@ const WAT_OFFSET = 1; // WAT = UTC+1
 
 function getNextServiceDate(): Date {
   const now = new Date();
-  // Convert current time to WAT
-  const utcMs = now.getTime() + now.getTimezoneOffset() * 60000;
-  const watNow = new Date(utcMs + WAT_OFFSET * 3600000);
+  // Convert current time to WAT (UTC+1)
+  const utcMs = now.getTime() + now.getTimezoneOffset() * 60_000;
+  const watNow = new Date(utcMs + WAT_OFFSET * 3_600_000);
 
   const watDay = watNow.getDay();
   let daysUntilSunday = SERVICE_DAY - watDay;
@@ -24,18 +24,14 @@ function getNextServiceDate(): Date {
     daysUntilSunday = 7;
   }
 
-  const nextService = new Date(watNow);
-  nextService.setDate(nextService.getDate() + daysUntilSunday);
-  nextService.setHours(SERVICE_HOUR, 0, 0, 0);
+  // Build target time in WAT, then convert to UTC ms
+  const nextServiceWat = new Date(watNow);
+  nextServiceWat.setDate(nextServiceWat.getDate() + daysUntilSunday);
+  nextServiceWat.setHours(SERVICE_HOUR, 0, 0, 0);
 
-  // Convert back from WAT to local time
-  const nextServiceUtcMs =
-    nextService.getTime() -
-    WAT_OFFSET * 3600000 -
-    now.getTimezoneOffset() * 60000 +
-    now.getTimezoneOffset() * 60000;
-  // Return the WAT-based target as a UTC timestamp
-  return new Date(nextServiceUtcMs - now.getTimezoneOffset() * 60000);
+  // WAT time → UTC ms: subtract WAT offset
+  const nextServiceUtcMs = nextServiceWat.getTime() - WAT_OFFSET * 3_600_000;
+  return new Date(nextServiceUtcMs);
 }
 
 interface TimeLeft {
@@ -46,12 +42,8 @@ interface TimeLeft {
 }
 
 function computeTimeLeft(target: Date): TimeLeft {
-  const now = new Date();
-  const utcNow = now.getTime() + now.getTimezoneOffset() * 60000;
-  const watNow = utcNow + WAT_OFFSET * 3600000;
-
-  // Build target in absolute ms using WAT
-  const diff = Math.max(0, target.getTime() - watNow);
+  // target is already in UTC ms, just compare to current UTC time
+  const diff = Math.max(0, target.getTime() - Date.now());
 
   return {
     days: Math.floor(diff / (1000 * 60 * 60 * 24)),
@@ -134,6 +126,9 @@ export function LiveStream() {
                 title="JCIM Live Stream"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowFullScreen
+                sandbox="allow-scripts allow-same-origin allow-presentation allow-popups"
+                referrerPolicy="strict-origin-when-cross-origin"
+                loading="lazy"
                 className="absolute inset-0 w-full h-full"
               />
             </div>

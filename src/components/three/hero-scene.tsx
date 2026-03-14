@@ -1,6 +1,6 @@
 "use client";
 
-import { Suspense, useRef } from "react";
+import { Suspense, useRef, useEffect } from "react";
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import { ParticleField } from "./particle-field";
 import { WireframeGlobe } from "./wireframe-globe";
@@ -20,21 +20,17 @@ function CameraController() {
     camera.lookAt(0, 0, 0);
   });
 
-  // Listen for mouse events
-  if (typeof window !== "undefined") {
+  useEffect(() => {
     const handleMove = (e: MouseEvent) => {
       mouse.current.x = (e.clientX / window.innerWidth - 0.5) * 2;
       mouse.current.y = -(e.clientY / window.innerHeight - 0.5) * 2;
     };
-    if (!CameraController._listening) {
-      window.addEventListener("mousemove", handleMove);
-      CameraController._listening = true;
-    }
-  }
+    window.addEventListener("mousemove", handleMove);
+    return () => window.removeEventListener("mousemove", handleMove);
+  }, []);
 
   return null;
 }
-CameraController._listening = false;
 
 export default function HeroScene() {
   return (
